@@ -1,6 +1,8 @@
 import { Container, CssBaseline, Typography, Tabs, Tab, Box } from '@mui/material';
 import PatientForm from './components/PatientForm';
 import PatientTable from './components/PatientTable';
+import SqlConsole from './components/SqlConsole';
+
 import { useState } from 'react';
 
 export default function App() {
@@ -21,6 +23,7 @@ export default function App() {
 
         {tab === 0 && <PatientForm />}
         {tab === 1 && <PatientTable />}
+        {tab === 2 && <SqlConsole />}
       </Container>
     </>
   );
