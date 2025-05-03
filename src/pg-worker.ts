@@ -10,11 +10,19 @@ worker({
         id          serial primary key,
         first_name  text,
         last_name   text,
-        dob         date,
+        dob         text,
         gender      text,
         phone       text,
         created_at  timestamptz default (now()),
-        email       text
+        email       text,
+        address text,
+        city text,
+        state text,
+        zip text,
+        insurance_company text,
+        insurance_number text,
+        emergency_name text,
+        emergency_phone text
       );
     `);
 

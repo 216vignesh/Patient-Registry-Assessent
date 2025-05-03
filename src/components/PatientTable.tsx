@@ -15,6 +15,15 @@ interface Patient {
   gender: string | null;
   phone: string | null;
   created_at: string;
+  email: string | null;
+  address: string | null;
+  city: string | null;
+  state: string | null;
+  zip: string | null;
+  insurance_company: string | null;
+  insurance_number: string | null;
+  emergency_name: string | null;
+  emergency_phone: string | null;
 }
 
 const columns: GridColDef[] = [
@@ -24,7 +33,15 @@ const columns: GridColDef[] = [
   { field: 'dob', headerName: 'DOB', width: 110 },
   { field: 'gender', headerName: 'Gender', width: 110 },
   { field: 'phone', headerName: 'Phone', width: 140 },
-  { field: 'created_at', headerName: 'Created', width: 170 }
+  { field: 'created_at', headerName: 'Created', width: 170 },
+  { field: 'email', headerName: 'Email', width: 200 },
+  { field: 'address', headerName: 'Address', flex: 1 },
+  { field: 'city', headerName: 'City', width: 100 },
+  { field: 'state', headerName: 'State', width: 100 },
+  { field: 'zip', headerName: 'ZIP', width: 100 },
+  { field: 'insurance_company', headerName: 'Insurance', flex: 1 },
+  { field: 'emergency_name', headerName: 'Emergency', flex: 1 },
+  { field: 'emergency_phone', headerName: 'Phone', width: 140 }
 ];
 
 export default function PatientTable() {

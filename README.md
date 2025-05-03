@@ -1,54 +1,43 @@
-# React + TypeScript + Vite
+# Patient Registration App
+A fully frontend-only patient registration and query interface built using:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **React** for UI and app logic
+- **MUI (Material UI)** for UI components and theming
+- **PGlite (via ElectricSQL)** for persistent SQL-based storage (in-browser)
+- **BroadcastChannel API** for multi-tab sync
+- **Vite** for fast local development
+- **Deployed on**: Vercel
 
-Currently, two official plugins are available:
+## Features
+- Register new patients with text field validations (example: validate proper email format, phone number, etc.)
+- View all patients in a searchable table
+- SQL tab to run any custom queries using SQL
+- Filter user tab for searching and filtering users based on various fields (users returned using SQL queries)
+- Local persistent storage using `IndexedDB`
+- Multi-tab sync using `BroadcastChannel`
+- No backend — all data lives securely in the browser
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to run
+### 1. Clone the repository
 
-## Expanding the ESLint configuration
+    git clone https://github.com/216vignesh/Patient-Registry-Assessent.git
+    cd Patient-Registry-Assessent
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+###  2. Install dependencies
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    npm install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+###  3. Start development server
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+    npm run dev
+
+###  4. Start development server
+
+    Visit http://localhost:5173
+
+## Challenges faced
+    Key hurdles included getting PGlite to run reliably in a Vite build (we had to exclude the WASM bundle from Vite’s optimizer), sharing a single Postgres instance across multiple tabs (solved with a SharedWorker plus BroadcastChannel refreshes). I also fixed an off‑by‑one Date Of Birth bug caused by UTC parsing, trimmed bundle size impact with preload hints, and switched to case‑insensitive searches using ILIKE/LOWER(). Together these tweaks made the app stable and multi‑tab aware.
+
+
+
