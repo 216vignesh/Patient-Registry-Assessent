@@ -37,7 +37,10 @@ A fully frontend-only patient registration and query interface built using:
     Visit http://localhost:5173
 
 ## Challenges faced
-    Key hurdles included getting PGlite to run reliably in a Vite build (we had to exclude the WASM bundle from Vite’s optimizer), sharing a single Postgres instance across multiple tabs (solved with a SharedWorker plus BroadcastChannel refreshes). I also fixed an off‑by‑one Date Of Birth bug caused by UTC parsing, trimmed bundle size impact with preload hints, and switched to case‑insensitive searches using ILIKE/LOWER(). Together these tweaks made the app stable and multi‑tab aware.
+Key hurdles included getting PGlite to run reliably in a Vite build (we had to exclude the WASM bundle from Vite’s optimizer), sharing a single Postgres instance across multiple tabs (solved with a SharedWorker plus BroadcastChannel refreshes). I also fixed an off‑by‑one Date Of Birth bug caused by UTC parsing, trimmed bundle size impact with preload hints, and switched to case‑insensitive searches using ILIKE/LOWER(). Together these tweaks made the app stable and multi‑tab aware.
+
+## URL
+https://patient-registry-assessent-yum8.vercel.app/
 
 
 
