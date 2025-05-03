@@ -21,31 +21,30 @@ export default function SqlConsole() {
 
   async function run() {
     try {
-      const res = await db.query(sql);
-
+      const res  = await db.query(sql);
+  
+      
       if (!res.rows.length) {
-           const n = (res as any).affectedRows ?? 0;
-           const plural = n === 1 ? '' : 's';
-           setMsg(
-             n ? `Success — ${n} row${plural} affected`
-               : 'Success'
-           );
-           setRows([]);
-           return;
-         }
-
-      const first = res.rows[0];
-      const gridCols: GridColDef[] = Object.keys(first).map(k => ({
+        const n = (res as any).affectedRows ?? 0;
+        setMsg(n ? `Success — ${n} row${n === 1 ? '' : 's'} affected` : 'Success');
+        setRows([]);
+        return;
+      }
+  
+      
+      const rowsObj = res.rows as Record<string, any>[];
+  
+      const gridCols: GridColDef[] = Object.keys(rowsObj[0]).map(k => ({
         field: k,
         headerName: k,
         flex: 1,
         minWidth: 120
       }));
-
-      const gridRows = res.rows.map((r, i) =>
-        ('id' in r ? r : { id: i, ...r })
+  
+      const gridRows = rowsObj.map((row, i) =>
+        'id' in row ? row : { id: i, ...row }
       );
-
+  
       setCols(gridCols);
       setRows(gridRows);
       setMsg('');
@@ -53,12 +52,12 @@ export default function SqlConsole() {
       setRows([]);
       setMsg(e.message);
     } finally {
-
       if (/^\s*(insert|update|delete|create|alter|drop)/i.test(sql)) {
         notifyMutation();
       }
     }
   }
+  
 
 
   return (

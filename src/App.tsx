@@ -1,4 +1,4 @@
-import { Container, CssBaseline, Typography, Tabs, Tab, Box } from '@mui/material';
+import { Container, CssBaseline, Typography, Tabs, Tab} from '@mui/material';
 import PatientForm from './components/PatientForm';
 import PatientTable from './components/PatientTable';
 import SqlConsole from './components/SqlConsole';
